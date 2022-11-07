@@ -1,0 +1,63 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "src\\log\\dailyRotateFile\\.122feb8891a66a263292ac4bb53698edd99b3bf1-audit.json",
+    "files": [
+        {
+<<<<<<< Updated upstream
+            "date": 1664564477336,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-09-30.log",
+            "hash": "c2f43544125cd41a34c17a03ba92a4d9ca4776ce871b3ba2bbdce541ac383a60"
+=======
+<<<<<<< Updated upstream
+            "date": 1663329324086,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-09-16.log",
+            "hash": "2f809ff1c31efa665aaeab0bac6c59df4befca2b76aa191ffee9e18710bc94a1"
+>>>>>>> Stashed changes
+        },
+        {
+            "date": 1664817174309,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-10-03.log",
+            "hash": "cadab4af147f9725bb8c1ed1edc4ccf05031eed48c1f8f6ffebda76d0504cbb0"
+        },
+        {
+            "date": 1664891126624,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-10-04.log",
+            "hash": "bb537fd253ba970afbc2aaef5503b6d9a1a0dc3263014356ad92c2b3d5253005"
+        },
+        {
+            "date": 1664970936156,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-10-05.log",
+            "hash": "981d2f2416618900bfeb26c6a0a1edc87be59a861e70db043172b516ec54f50e"
+        },
+        {
+<<<<<<< Updated upstream
+            "date": 1665089463636,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-10-06.log",
+            "hash": "ef44ce8f024b4efce9b4fd4cc04192d578d1f9001570d110d21cacda7c21f50a"
+        },
+        {
+            "date": 1665141635278,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-10-07.log",
+            "hash": "bd7bec38e526b9812c359abde13a3f90b2cd5c862fbf1455c12184d6d4d16451"
+=======
+            "date": 1663919357803,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-09-23.log",
+            "hash": "115239189f702b4966166630c05fd4ab1857dd4165c0e100dbc7db547868d078"
+=======
+            "date": 1667489215398,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-11-03.log",
+            "hash": "1263a1a6e59f993e5031910ee5d5577ea1a16e39b2f1c0f20c0df632129df99d"
+        },
+        {
+            "date": 1667755785125,
+            "name": "src\\log\\dailyRotateFile\\tasconecta - 2022-11-06.log",
+            "hash": "a0d89baa8d7215ebe00344bd8dcfcf58588aeb4d7b5e31d929a548ff0d303355"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+        }
+    ],
+    "hashType": "sha256"
+}

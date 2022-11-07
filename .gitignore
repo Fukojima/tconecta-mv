@@ -1,0 +1,14 @@
+#NODE MODULES
+node_modules
+
+#CONFIG
+.env
+.vscode
+
+#ARQ
+TSCM - Relatório Conectividade.pdf
+TSCM - Relatório Tasconecta.pdf
+src/log/archives
+
+#COVERAGE
+coverage

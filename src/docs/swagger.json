@@ -1,0 +1,1456 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tasconecta",
+        "description": "Tasconecta is a Tascom Tecnologia product that aims to integrate different health systems, integrating health-related data from one to another system..",
+        "termsOfService": "https://tascom-connectivity.herokuapp.com/api/terms",
+        "contact": {
+            "name": "Tascom Tecnologia",
+            "email": "support@tascomtecnologia.com.br",
+            "url": "https://www.tascominformatica.com.br/"
+        },
+        "version": "1.0.0"
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ],
+    "paths": {
+        "/api/connectivity/login": {
+            "post": {
+                "summary": "Login",
+                "description": "Route responsible for login application.",
+                "security": [],
+                "tags": [
+                    "Login"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Login"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "lucasantonio@gmail.com",
+                                        "password": "12345"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "user": {
+                                        "value": {
+                                            "name": "Lucas Antonio Costa",
+                                            "email": "lucasantonio@gmail.com",
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Senha ou usuário incorreto."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/users": {
+            "post": {
+                "summary": "Create User",
+                "description": "Route responsible to create users to application.",
+                "tags": [
+                    "User"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "_id": "62ebb5e34817d7270e2fa574",
+                                        "name": "Lucas Antonio",
+                                        "email": "lucasantonio@gmail.com",
+                                        "password": "12345",
+                                        "company": "6286db68126348481f235b1c",
+                                        "lastAccess": "2022-08-19",
+                                        "active": true,
+                                        "grant": "leitura"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registrado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao tentar registrar."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/users/{id}": {
+            "put": {
+                "summary": "Update User",
+                "description": "Route responsible for updating user data.",
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id thats will be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "Lucas Antonio Costa"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro atualizado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Houve um erro na atualização do registro."
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show User",
+                "description": "Route responsible to return user data by userId .",
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id that we will query for information.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "user": {
+                                        "value": {
+                                            "_id:": "62ebb5e34817d7270e2fa574",
+                                            "name": "Lucas Antonio Costa",
+                                            "email": "lucasantonio@gmail.com",
+                                            "company": "6286db68126348481f235b1c",
+                                            "lastAccess": "2022-08-19",
+                                            "active": true,
+                                            "grant": "leitura",
+                                            "createdAt": "2022-08-19",
+                                            "updatedAt": "2022-09-10"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/companies": {
+            "post": {
+                "summary": "Create Company",
+                "description": "Route responsible to create companies to application.",
+                "tags": [
+                    "Company"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Company"
+                            },
+                            "examples": {
+                                "company": {
+                                    "value": {
+                                        "_id": "6286db68126348481f235b1c",
+                                        "name": "DIGITAL SAÚDE",
+                                        "cnpj": "73.934.947/0001-43",
+                                        "corporate_name": "SAÚDE E TRANSFORMAÇÃO DIGITAL LTDA",
+                                        "phone": "(81)3377-3210",
+                                        "site_link": "https://www.digitalsaude.com.br/",
+                                        "address": {
+                                            "street": "Avenida Xavier de Melo",
+                                            "number": "82",
+                                            "district": "Iputinga",
+                                            "county": "Recife",
+                                            "code": "52350-200"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registrado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Número de CNPJ inválido."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao tentar registrar."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/companies/{id}": {
+            "put": {
+                "summary": "Update Company",
+                "description": "Route responsible for updating company data.",
+                "tags": [
+                    "Company"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Company id thats will be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Company"
+                            },
+                            "examples": {
+                                "Company": {
+                                    "value": {
+                                        "phone": "(81)3117-3099",
+                                        "address": {
+                                            "street": "Avenida Xavier de Melo",
+                                            "number": "80C",
+                                            "district": "Iputinga",
+                                            "county": "Recife",
+                                            "code": "52350-200"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro atualizado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Houve um erro na atualização do registro."
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show Company",
+                "description": "Route responsible to return company data.",
+                "tags": [
+                    "Company"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Company id thats will be queried.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "company": {
+                                        "value": {
+                                            "name": "DIGITAL SAÚDE",
+                                            "cnpj": "73.934.947/0001-43",
+                                            "corporate_name": "SAÚDE E TRANSFORMAÇÃO DIGITAL LTDA",
+                                            "phone": "(81)3117-3099",
+                                            "site_link": "https://www.digitalsaude.com.br/",
+                                            "address": {
+                                                "street": "Avenida Xavier de Melo",
+                                                "number": "82B",
+                                                "district": "Iputinga",
+                                                "county": "Recife",
+                                                "code": "52350-200"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations": {
+            "post": {
+                "summary": "Create Integration",
+                "description": "Route responsible to create integration data.",
+                "tags": [
+                    "Integration"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "Token to recognize UserId.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Integration"
+                            },
+                            "examples": {
+                                "integration": {
+                                    "value": {
+                                        "_id": "6303cfdce52b7685e468237e",
+                                        "name": "Hospital da Restauração",
+                                        "description": "Gestantes +35",
+                                        "userId": "62ebb5e34817d7270e2fa574",
+                                        "integrationType": "database",
+                                        "expiredAt": "2024-10-25",
+                                        "triggerInterval": "10",
+                                        "integrationReport": false,
+                                        "autoRegister": false,
+                                        "createdAt": "2022-08-22",
+                                        "updatedAt": "2022-08-22"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registrado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao tentar registrar."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations/{id}": {
+            "put": {
+                "summary": "Integration Update",
+                "description": "Route responsible to update some values for integration data.",
+                "tags": [
+                    "Integration"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Integration id that will be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "Token to recognize user id.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Integration"
+                            },
+                            "examples": {
+                                "integration": {
+                                    "value": {
+                                        "expireAt": "2030-07-17",
+                                        "reportPeriod": "daily"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro atualizado com sucesso."
+                    },
+                    "400": {
+                        "description": "Corpo da requisição incompleto."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Houve um erro na atualização do registro."
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show One Integration",
+                "description": "Route responsible to return data from a specific integration passed by id.",
+                "tags": [
+                    "Integration"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Integration id that will be queried.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "Token to recognize user id.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "integration": {
+                                        "value": {
+                                            "name": "Hospital da Restauração",
+                                            "description": "Gestantes +35",
+                                            "userId": "62ebb5e34817d7270e2fa574",
+                                            "integrationType": "database",
+                                            "expireAt": "2030-07-17",
+                                            "triggerInterval": "10",
+                                            "reportPeriod": "daily",
+                                            "createdAt": "2022-08-22",
+                                            "updatedAt": "2022-08-22"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations/user/current": {
+            "get": {
+                "summary": "Show All Integration - By current User",
+                "description": "Returns data from all integrations that user has access, getting view authorization via access token.",
+                "tags": [
+                    "Integration"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Integration id that will be queried.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "Token to recognize user id.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "integration": {
+                                        "value": [
+                                            {
+                                                "_id": "6303cfdce52b7685e468237e",
+                                                "name": "Hospital da Restauração",
+                                                "description": "Gestantes +35",
+                                                "userId": "62ebb5e34817d7270e2fa574",
+                                                "integrationType": "database",
+                                                "expireAt": "2030-07-17",
+                                                "triggerInterval": "10",
+                                                "reportPeriod": "daily",
+                                                "createdAt": "2022-08-22",
+                                                "updatedAt": "2022-08-22"
+                                            },
+                                            {
+                                                "_id": "62f536ef910f9aade2fa16ba",
+                                                "name": "T + Saúde",
+                                                "description": "Pacientes acima dos 50 anos",
+                                                "userId": "62ebb5e34817d7270e2fa574",
+                                                "integrationType": "database",
+                                                "expiredAt": "2022-10-20",
+                                                "triggerInterval": "2",
+                                                "integrationReport": true,
+                                                "createdAt": "2022-08-11",
+                                                "updatedAt": "2022-08-15"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations-config": {
+            "post": {
+                "summary": "Create Integration Config",
+                "description": "Route responsible to create integration config.",
+                "tags": [
+                    "Integration Config"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IntegrationConfig"
+                            },
+                            "examples": {
+                                "integrationConfig": {
+                                    "value": {
+                                        "_id": "6304d8f5e380c6b36d94f21d",
+                                        "userId": "62ebb5e34817d7270e2fa574",
+                                        "integrationId": "62f536ef910f9aade2fa16ba",
+                                        "databaseType": "oracledb",
+                                        "querySettings": [
+                                            {
+                                                "tableName": "patient",
+                                                "period": "monthly",
+                                                "column": [
+                                                    {
+                                                        "columnName": "admeasurement",
+                                                        "customQuery": false
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "connectionSettings": {
+                                            "username": "yourUsername",
+                                            "database": "yourDatabaseName",
+                                            "password": "yourPassword",
+                                            "port": "3452",
+                                            "host": "localhost"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registrado com sucesso."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations-config/{id}": {
+            "put": {
+                "summary": "Update Integration Config",
+                "description": "Route responsible to update fields in integration config.",
+                "tags": [
+                    "Integration Config"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Integration Confid id that will be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IntegrationConfig"
+                            },
+                            "examples": {
+                                "integrationConfig": {
+                                    "value": {
+                                        "databaseType": "postgres",
+                                        "column": [
+                                            {
+                                                "columnName": "name",
+                                                "customQuery": true,
+                                                "query": "age",
+                                                "operator": ">",
+                                                "value": "50",
+                                                "dataType": "string",
+                                                "nickname": "+50"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "integrationConfig": {
+                                        "value": {
+                                            "_id": "6304d8f5e380c6b36d94f21d",
+                                            "userId": "62ebb5e34817d7270e2fa574",
+                                            "integrationId": "62f536ef910f9aade2fa16ba",
+                                            "databaseType": "postgres",
+                                            "querySettings": [
+                                                {
+                                                    "tableName": "patient",
+                                                    "period": "monthly",
+                                                    "column": [
+                                                        {
+                                                            "columnName": "name",
+                                                            "customQuery": true,
+                                                            "query": "age",
+                                                            "operator": ">",
+                                                            "value": "50",
+                                                            "dataType": "string",
+                                                            "nickname": "+50"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            },
+            "get": {
+                "summary": "Search Integration Config",
+                "description": "Route responsible to return values for integration config.",
+                "tags": [
+                    "Integration Config"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Integration Config id that will be searched.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "objectid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "integrationConfig": {
+                                        "value": {
+                                            "databaseType": "postgres",
+                                            "querySettings": [
+                                                {
+                                                    "tableName": "patient",
+                                                    "period": "monthly",
+                                                    "column": [
+                                                        {
+                                                            "columnName": "name",
+                                                            "customQuery": true,
+                                                            "query": "age",
+                                                            "operator": ">",
+                                                            "value": "50",
+                                                            "dataType": "string",
+                                                            "nickname": "+50"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário não tem permissão para consultar informações."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations-config/tables": {
+            "post": {
+                "summary": "Access Database",
+                "description": "Route responsible for access database Oracle.",
+                "tags": [
+                    "Integration Config"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IntegrationConfig"
+                            },
+                            "examples": {
+                                "integrationConfig": {
+                                    "value": {
+                                        "connectionSettings": {
+                                            "username": "yourUsername",
+                                            "database": "yourDatabaseName",
+                                            "password": "yourPassword",
+                                            "port": "3452",
+                                            "host": "localhost",
+                                            "sid": "v60d"
+                                        },
+                                        "active": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso ao executar a query."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/integrations-config/filter-tables": {
+            "post": {
+                "summary": "Filter Tables",
+                "description": "Route responsible for showing tables requested by user.",
+                "tags": [
+                    "Integration Config"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IntegrationConfig"
+                            },
+                            "examples": {
+                                "integrationConfig": {
+                                    "value": {
+                                        "connectionSettings": {
+                                            "username": "yourUsername",
+                                            "database": "yourDatabaseName",
+                                            "password": "yourPassword",
+                                            "port": "3452",
+                                            "host": "localhost",
+                                            "sid": "v60d"
+                                        },
+                                        "tables": [
+                                            "'PATIENT'",
+                                            "'CONTACT'",
+                                            "'EMPLOYEE'"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "integrationConfig": {
+                                        "value": [
+                                            {
+                                                "tableName": "PATIENT_PROGRAM",
+                                                "colQuantity": 6,
+                                                "lastUpdate": "2019-09-26T19:38:19.000Z"
+                                            },
+                                            {
+                                                "tableName": "CONTACT",
+                                                "colQuantity": 19,
+                                                "lastUpdate": "2022-01-26T01:01:17.000Z"
+                                            },
+                                            {
+                                                "tableName": "FAMILY",
+                                                "colQuantity": 22,
+                                                "lastUpdate": "2022-01-19T05:59:58.000Z"
+                                            },
+                                            {
+                                                "tableName": "EXAM",
+                                                "colQuantity": 8,
+                                                "lastUpdate": "2019-09-26T19:38:20.000Z"
+                                            },
+                                            {
+                                                "tableName": "CID",
+                                                "colQuantity": 17,
+                                                "lastUpdate": "2019-09-26T19:38:20.000Z"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no banco de dados."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao requisitar os dados do servidor."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/mongodb": {
+            "post": {
+                "summary": "MongoDB Connection",
+                "description": "Route responsible for MongoDB connection.",
+                "tags": [
+                    "MongoDB"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MongoDB"
+                            },
+                            "examples": {
+                                "mongodb": {
+                                    "value": {
+                                        "username": "yourUsername",
+                                        "password": "yourPassword",
+                                        "database": "yourDatabaseName",
+                                        "host": "yourHost",
+                                        "port": "27017"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Conexão com MongoDB estabelecida."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Erro ao tentar conexão com MongoDB."
+                    }
+                }
+            }
+        },
+        "/api/connectivity/postgres": {
+            "post": {
+                "summary": "Postgres Connection",
+                "description": "Route responsible for Postgres connection.",
+                "tags": [
+                    "Postgres"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Postgres"
+                            },
+                            "examples": {
+                                "postgres": {
+                                    "value": {
+                                        "username": "yourUsername",
+                                        "password": "yourPassword",
+                                        "database": "yourDatabaseName",
+                                        "host": "yourHost",
+                                        "port": "5432"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Conexão com Postgres estabelecida."
+                    },
+                    "401": {
+                        "description": "Token inválido."
+                    },
+                    "500": {
+                        "description": "Erro ao tentar conexão com Postgres."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter JWT Bearer Token",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "Login": {
+                "type": "object",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "name",
+                    "email",
+                    "password",
+                    "company",
+                    "grant"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "company": {
+                        "type": "string"
+                    },
+                    "lastAccess": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "grant": {
+                        "type": "string",
+                        "enum": [
+                            "leitura",
+                            "leitura/escrita"
+                        ]
+                    }
+                }
+            },
+            "Company": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "name",
+                    "cnpj",
+                    "corporate_name"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "cnpj": {
+                        "type": "string"
+                    },
+                    "corporate_name": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "site_link": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "street": "string",
+                        "number": "string",
+                        "district": "string",
+                        "county": "string",
+                        "code": "string"
+                    }
+                }
+            },
+            "Integration": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "name",
+                    "userId",
+                    "integrationType"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "integrationType": {
+                        "type": "string",
+                        "enum": [
+                            "api",
+                            "database"
+                        ]
+                    },
+                    "expireAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "trigger": {
+                        "type": "string"
+                    },
+                    "triggerInterval": {
+                        "type": "string"
+                    },
+                    "registerInterval": {
+                        "type": "string"
+                    },
+                    "integrationReport": {
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "reportPeriod": {
+                        "type": "string",
+                        "enum": [
+                            "daily",
+                            "weekly",
+                            "monthly",
+                            "null"
+                        ]
+                    },
+                    "reportEmail": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "autoRegister": {
+                        "type": "boolean",
+                        "default": "false"
+                    }
+                }
+            },
+            "IntegrationConfig": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "userId",
+                    "integrationId",
+                    "databaseType",
+                    "username",
+                    "database",
+                    "password",
+                    "port",
+                    "host"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "integrationId": {
+                        "type": "string",
+                        "format": "objectid"
+                    },
+                    "databaseType": {
+                        "type": "string",
+                        "enum": [
+                            "postgres",
+                            "mysql",
+                            "mariadb",
+                            "oracledb",
+                            "mongodb"
+                        ]
+                    },
+                    "queryVariations": {
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "querySettings": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "tableName": {
+                                    "type": "string"
+                                },
+                                "relation": {
+                                    "type": "string"
+                                },
+                                "period": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                },
+                                "pk": {
+                                    "type": "string"
+                                },
+                                "column": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "columnName": {
+                                                "type": "string"
+                                            },
+                                            "customQuery": {
+                                                "type": "boolean"
+                                            },
+                                            "query": {
+                                                "type": "string"
+                                            },
+                                            "operator": {
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "dataType": {
+                                                "type": "string"
+                                            },
+                                            "variation": {
+                                                "type": "string"
+                                            },
+                                            "nickname": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "connectionSettings": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "database": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string",
+                                "format": "password"
+                            },
+                            "port": {
+                                "type": "string"
+                            },
+                            "host": {
+                                "type": "string"
+                            },
+                            "sid": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "vpnSettings": {
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "default": true
+                    }
+                }
+            },
+            "MongoDB": {
+                "type": "object",
+                "required": [
+                    "username",
+                    "password",
+                    "database",
+                    "host"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "host": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "number"
+                    },
+                    "database": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Postgres": {
+                "type": "object",
+                "required": [
+                    "username",
+                    "password",
+                    "database",
+                    "host"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "host": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "number"
+                    },
+                    "database": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
