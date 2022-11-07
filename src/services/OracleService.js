@@ -8,9 +8,9 @@ const oracleErrorsConnection = require('../errors/OracleErrorsConnection')
 const OracleFunctions = require('../contype/functions/OracleFunctions')
 const responseMessages = require('../models/responseMessages')
 
-// oracledb.initOracleClient({
-//     libDir: 'C:\\instantclient_21_3x64',
-// })
+oracledb.initOracleClient({
+    libDir: 'C:\\instantclient_21_3x64',
+})
 
 module.exports = {
     async connection(user, password, connectString) {
@@ -28,6 +28,7 @@ module.exports = {
             conn.success = true
             return conn
         } catch (error) {
+           
             const result = oracleErrorsConnection(error)
             logger.error(`${responseMessages._ERROR_ACCESS_DATABASE}. Erro: ${result.error}`)
             logger.info(responseMessages._TRY_REESTANLISH_CONNECTION)
