@@ -14,7 +14,7 @@ const app = express()
 server.connect()
 // 
 
-// app.listen(process.env.PORT, '0.0.0.0')
+app.listen(process.env.PORT || 5000, '0.0.0.0')
 
 let corsOptions = {
     origin: false,
