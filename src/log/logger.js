@@ -49,7 +49,6 @@ const logger = function (filename) {
         format: combine(logFormat),
         colorize: true,
         transports: [
-            transport,
             new transports.File({
                 filename: `./src/log/archives/${filename}.log`,
             }),
