@@ -9,6 +9,8 @@ node_modules
 TSCM - Relatório Conectividade.pdf
 TSCM - Relatório Tasconecta.pdf
 src/log/archives
+src/log/dailyRotateFile
+src/log/auditLogger
 
 #COVERAGE
 coverage
