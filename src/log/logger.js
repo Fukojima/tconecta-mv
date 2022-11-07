@@ -1,7 +1,7 @@
 const {transports, config, format} = require('winston')
 const {combine, timestamp, printf} = format
 const winston = require('winston')
-require('winston-daily-rotate-file')
+
 
 const logFormat = combine(
     timestamp({
@@ -41,12 +41,6 @@ const logLevels = {
 
 winston.addColors(logLevels)
 
-const transport = new winston.transports.DailyRotateFile({
-    dirname: './src/log/dailyRotateFile',
-    filename: 'tasconecta - %DATE%.log',
-    datePattern: 'YYYY-MM-DD',
-    maxFiles: '7d',
-})
 
 const logger = function (filename) {
     return winston.createLogger({
